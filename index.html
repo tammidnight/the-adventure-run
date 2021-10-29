@@ -7,17 +7,30 @@
     <title>The Adventure Run</title>
   </head>
   <body>
-    <div id="instructions">
-      <h2>Instructions</h2>
-      <p><!-- Instructions go here --></p>
-    </div>
-    <div id="goal">
-      <h2>Goal of the Game</h2>
-      <p><!--Text goes here--></p>
-    </div>
-    <button id="start">Start</button>
+    <section class="start">
+      <div class="start" id="instructions">
+        <h2>Instructions</h2>
+        <p><!-- Instructions go here --></p>
+      </div>
+      <div class="start" id="goal">
+        <h2>Goal of the Game</h2>
+        <p><!--Text goes here--></p>
+      </div>
+      <button id="start">Start</button>
+    </section>
     <canvas id="myCanvas" width="750" height="400"></canvas>
-    <button id="restart">Restart Game</button>
+    <div class="gameOver" id="weakScore">
+      <h2>Game over</h2>
+      <p>I think you might need some more practice ...</p>
+    </div>
+    <div class="gameOver" id="goodScore">
+      <h2>Game over</h2>
+      <p>You did a great job!</p>
+    </div>
+    <div class="gameOver" id="yourScore">
+      <h3>Your Score is</h3>
+    </div>
+    <button id="restart">Run again</button>
     <script src="src/game.js"></script>
     <script src="src/index.js"></script>
   </body>
