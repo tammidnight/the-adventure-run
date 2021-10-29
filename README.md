@@ -22,19 +22,19 @@ Backlog
 Data structure
 
 script.js
-    - window.addEventListener('load', => {})
-    - button.addEventListener('click', => {})
-    - document.addEventListener('keydown', => {})
-    - document.addEventListener('keyup', => {})
-    - startGame()
+- window.addEventListener('load', => {})
+- button.addEventListener('click', => {})
+- document.addEventListener('keydown', => {})
+- document.addEventListener('keyup', => {})
+- startGame()
 
 game.js
-    - Class Game
-        constructor()
-        start()
-        draw()
-        collision()
-        increaseSpeed()
+- Class Game
+  - constructor()
+  - start()
+  - draw()
+  - collision()
+  - increaseSpeed()
 
 
 
@@ -49,24 +49,24 @@ winScreen
 Task
 
 HTML
-    - header
-    - canvas
-    - start and restart buttons
+- header
+- canvas
+- start and restart buttons
 
 Javascript
-    - basic game loop
-        draw background
-        draw obstacles
-        draw score items
-        draw Player
-        draw foreground
-        draw Score
-    - Class Game
-        define properties
-        define methods
+- basic game loop
+  - draw background
+  - draw obstacles
+  - draw score items
+  - draw Player
+  - draw foreground
+  - draw Score
+- Class Game
+  - define properties
+  - define methods
 
 CSS
-    - basic styles for buttons
+- basic styles for buttons
 
 Additional Links
 Trello
