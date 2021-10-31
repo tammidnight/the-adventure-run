@@ -1,7 +1,12 @@
+const game = new Game();
+
 window.addEventListener("load", () => {
-  canvas.style.display = "none";
-  restartBtn.style.display = "none";
-  restartPage.style.display = "none";
+  game.draw();
+  //canvas.style.display = "none";
+  //restartBtn.style.display = "none";
+  //weakScore.style.display = "none";
+  //goodScore.style.display = "none";
+  //yourScore.style.display = "none";
 
   // start button click
 
