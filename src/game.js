@@ -59,6 +59,36 @@ class Game {
     }
   }
 
+  rockMove() {}
+
+  meteorMove() {}
+
+  raspberryMove() {}
+
+  bambooMove() {}
+
+  gameLoop() {
+    const items = [
+      this.rockMove,
+      this.meteorMove,
+      this.raspberryMove,
+      this.bambooMove,
+    ];
+
+    for (let i = 0; i < items.length; i++) {
+      let random = Math.floor(Math.random() * items.length);
+      if (random == 1) {
+        this.rockMove();
+      } else if (random == 2) {
+        this.meteorMove();
+      } else if (random == 3) {
+        this.raspberryMove();
+      } else if (random == 4) {
+        this.bambooMove;
+      }
+    }
+  }
+
   collision() {
     // if collision with obstacle
     // if collision with score item
