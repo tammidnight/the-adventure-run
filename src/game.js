@@ -47,10 +47,10 @@ class Game {
   audioOff() {}
 
   playerMove() {
-    if (this.jumping) {
-      playerY -= 100;
+    if (this.jumping && playerY > 100) {
+      playerY -= 10;
     } else {
-      playerY += 5;
+      playerY += 2;
       if (playerY > 215) {
         playerY = 215;
       }

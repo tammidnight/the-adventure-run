@@ -13,14 +13,19 @@ window.addEventListener("load", () => {
   // restart button click
 
   document.addEventListener("keydown", (event) => {
-    if (event.key == "ArrowLeft") {
+    if (event.key == "ArrowUp") {
+      game.jumping = true;
     }
-    if (event.key == "ArrowRight") {
+    if (event.key == "ArrowDown") {
+      game.ducking = true;
     }
 
     if (event.key == "e") {
     }
   });
 
-  document.addEventListener("keyup", () => {});
+  document.addEventListener("keyup", () => {
+    game.jumping = false;
+    game.ducking = false;
+  });
 });
