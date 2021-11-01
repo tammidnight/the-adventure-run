@@ -6,6 +6,7 @@ let startPage = document.querySelector(".start");
 let weakScore = document.querySelector("#weakScore");
 let goodScore = document.querySelector("#goodScore");
 let yourScore = document.querySelector("#yourScore");
+let level = document.querySelector("#level");
 
 // load all Images
 let bg = new Image();
@@ -83,15 +84,26 @@ class Game {
   }
 
   playerMove() {
-    if (playerY <= 214) {
-      this.jumping = false;
-    }
-    if (this.jumping && playerY >= 80) {
-      playerY -= 220;
+    if (level.options[level.selectedIndex].text == "Hard") {
+      if (playerY <= 214) {
+        this.jumping = false;
+      }
+      if (this.jumping && playerY >= 80) {
+        playerY -= 220;
+      } else {
+        playerY += 1.5;
+        if (playerY > 215) {
+          playerY = 215;
+        }
+      }
     } else {
-      playerY += 1.5;
-      if (playerY > 215) {
-        playerY = 215;
+      if (this.jumping && playerY >= 80) {
+        playerY -= 15;
+      } else {
+        playerY += 2;
+        if (playerY > 215) {
+          playerY = 215;
+        }
       }
     }
 
@@ -209,7 +221,6 @@ class Game {
             }
           } else {
             this.gameOver = true;
-            console.log(this.gameOver);
             this.gameOverAudioOn();
           }
         }
