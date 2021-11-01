@@ -43,6 +43,9 @@ class Game {
     this.audio = new Audio();
     this.audioPlaying = false;
     this.audioChanging = false;
+    this.gameOverAudio = new Audio(
+      "./sounds/mixkit-game-over-dark-orchestra-633.wav"
+    );
   }
 
   audioOn() {
@@ -59,6 +62,14 @@ class Game {
 
   audioOff() {
     this.audio.pause();
+  }
+
+  gameOverAudioOn() {
+    if (this.audioPlaying || this.audioChanging) {
+      this.audio.pause();
+      this.gameOverAudio.volume = 0.05;
+      this.gameOverAudio.play();
+    }
   }
 
   playerMove() {
@@ -79,18 +90,18 @@ class Game {
     }
   }
 
-  collision() {
-    // if collision with obstacle
-    // if collision with score item
-  }
-
   increaseSpeed() {}
 
-  showScore() {}
-
   showGameOver() {
-    // canvas hidden
-    // restart button shown
+    canvas.style.display = "none";
+    restartBtn.style.display = "block";
+    yourScore.style.display = "block";
+
+    if (this.score < 10) {
+      weakScore.style.display = "block";
+    } else {
+      goodScore.style.display = "block";
+    }
   }
 
   draw() {
@@ -105,9 +116,9 @@ class Game {
       this.count++;
 
       if (this.count > 300) {
-        let random = Math.floor(Math.random() * 4);
+        let random = Math.floor(Math.random() * 8);
 
-        if (random == 0) {
+        if (random == 0 || random == 4 || random == 6) {
           let firstObstacleObj = {
             img: firstObstacle,
             x: 750,
@@ -116,7 +127,7 @@ class Game {
           };
           items.push(firstObstacleObj);
         }
-        if (random == 1) {
+        if (random == 1 || random == 5 || random == 7) {
           let secondObstacleObj = {
             img: secondObstacle,
             x: 750,
@@ -162,14 +173,20 @@ class Game {
           playerX + player.width >= items[i].x &&
           playerX <= items[i].x + items[i].img.width &&
           playerY <= items[i].y + items[i].img.height &&
-          playerY + player.height >= items[i].y + items[i].img.height
+          (playerY + player.height >= items[i].y + items[i].img.height ||
+            playerY + player.height <= items[i].y + items[i].img.height)
         ) {
           if (items[i].scoring) {
-            if (playerX == items[i].x + items[i].img.width) {
+            if (
+              (playerX + player.width) / 2 ==
+              items[i].x + items[i].img.width
+            ) {
               this.score += items[i].points;
             }
           } else {
-            isGameOver = true;
+            this.gameOver = true;
+            console.log(this.gameOver);
+            /* this.gameOverAudioOn(); */
           }
         }
       }
@@ -178,12 +195,13 @@ class Game {
 
       // Game Ends
       if (this.gameOver) {
-        cancelAnimationFrame(intervalId);
+        cancelAnimationFrame(this.intervalId);
+        //this.showGameOver();
       } else {
+        this.intervalId = requestAnimationFrame(() => {
+          animation();
+        });
       }
-      this.intervalId = requestAnimationFrame(() => {
-        animation();
-      });
     };
     animation();
   }
