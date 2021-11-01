@@ -62,9 +62,6 @@ class Game {
   }
 
   playerMove() {
-    /* if (playerY <= 214) {
-      this.jumping = false;
-    } */
     if (this.jumping && playerY >= 100) {
       playerY -= 10;
     } else {
@@ -108,23 +105,45 @@ class Game {
       this.count++;
 
       if (this.count > 300) {
-        let random = Math.floor(Math.random() * 5);
+        let random = Math.floor(Math.random() * 4);
 
         if (random == 0) {
-          let firstObstacleObj = { img: firstObstacle, x: 750, y: 150 };
+          let firstObstacleObj = {
+            img: firstObstacle,
+            x: 750,
+            y: 150,
+            scoring: false,
+          };
           items.push(firstObstacleObj);
         }
         if (random == 1) {
-          let secondObstacleObj = { img: secondObstacle, x: 750, y: 265 };
+          let secondObstacleObj = {
+            img: secondObstacle,
+            x: 750,
+            y: 265,
+            scoring: false,
+          };
           items.push(secondObstacleObj);
         }
 
         if (random == 2) {
-          let firstScoreObj = { img: firstScore, x: 750, y: 245 };
+          let firstScoreObj = {
+            img: firstScore,
+            x: 750,
+            y: 245,
+            scoring: true,
+            points: 1,
+          };
           items.push(firstScoreObj);
         }
         if (random == 3) {
-          let secondScoreObj = { img: secondScore, x: 750, y: 100 };
+          let secondScoreObj = {
+            img: secondScore,
+            x: 750,
+            y: 100,
+            scoring: true,
+            points: 5,
+          };
           items.push(secondScoreObj);
         }
 
@@ -137,6 +156,21 @@ class Game {
 
         if (items[i].x + items[i].img.width < 0) {
           items.splice(i, 1);
+        }
+
+        if (
+          playerX + player.width >= items[i].x &&
+          playerX <= items[i].x + items[i].img.width &&
+          playerY <= items[i].y + items[i].img.height &&
+          playerY + player.height >= items[i].y + items[i].img.height
+        ) {
+          if (items[i].scoring) {
+            if (playerX == items[i].x + items[i].img.width) {
+              this.score += items[i].points;
+            }
+          } else {
+            isGameOver = true;
+          }
         }
       }
 
