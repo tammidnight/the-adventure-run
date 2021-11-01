@@ -47,7 +47,7 @@ class Game {
     this.jumping = false;
     this.ducking = false;
     this.count = 0;
-    this.time = 200;
+    this.time = 260;
     this.audio = new Audio();
     this.audioPlaying = false;
     this.audioChanging = false;
@@ -83,10 +83,13 @@ class Game {
   }
 
   playerMove() {
+    if (playerY <= 214) {
+      this.jumping = false;
+    }
     if (this.jumping && playerY >= 80) {
-      playerY -= 15;
+      playerY -= 220;
     } else {
-      playerY += 2;
+      playerY += 1.5;
       if (playerY > 215) {
         playerY = 215;
       }
