@@ -40,11 +40,26 @@ class Game {
     this.jumping = false;
     this.ducking = false;
     this.count = 0;
+    this.audio = new Audio();
+    this.audioPlaying = false;
+    this.audioChanging = false;
   }
 
-  audioOn() {}
+  audioOn() {
+    this.audio.src = "./sounds/POL-follow-me-short.wav";
+    this.audio.volume = 0.05;
+    this.audio.play();
+  }
 
-  audioOff() {}
+  audioChange() {
+    this.audio.src = "./sounds/POL-magical-sun-short.wav";
+    this.audio.volume = 0.05;
+    this.audio.play();
+  }
+
+  audioOff() {
+    this.audio.pause();
+  }
 
   playerMove() {
     if (this.jumping && playerY > 100) {
@@ -134,9 +149,5 @@ class Game {
       });
     };
     animation();
-  }
-
-  start() {
-    this.draw();
   }
 }

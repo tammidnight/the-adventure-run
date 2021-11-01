@@ -19,6 +19,19 @@ window.addEventListener("load", () => {
     if (event.key == "ArrowDown") {
       game.ducking = true;
     }
+    if (event.key == "m") {
+      if (game.audioPlaying == false && game.audioChanging == false) {
+        game.audioPlaying = true;
+        game.audioOn();
+      } else if (game.audioPlaying == true && game.audioChanging == false) {
+        game.audioChanging = true;
+        game.audioChange();
+      } else {
+        game.audioPlaying = false;
+        game.audioChanging = false;
+        game.audioOff();
+      }
+    }
 
     if (event.key == "e") {
     }
