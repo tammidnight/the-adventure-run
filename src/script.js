@@ -1,16 +1,29 @@
 const game = new Game();
 
 window.addEventListener("load", () => {
-  game.draw();
-  //canvas.style.display = "none";
-  //restartBtn.style.display = "none";
-  //weakScore.style.display = "none";
-  //goodScore.style.display = "none";
-  //yourScore.style.display = "none";
+  canvas.style.display = "none";
+  restartBtn.style.display = "none";
+  weakScore.style.display = "none";
+  goodScore.style.display = "none";
+  yourScore.style.display = "none";
 
   // start button click
+  startBtn.addEventListener("click", () => {
+    startBtn.style.display = "none";
+    startPage.style.display = "none";
+    canvas.style.display = "block";
+    game.draw();
+  });
 
   // restart button click
+  restartBtn.addEventListener("click", () => {
+    restartBtn.style.display = "none";
+    canvas.style.display = "block";
+    game.score = 0;
+    game.intervalId = 0;
+    game.gameOver = false;
+    game.count = 0;
+  });
 
   document.addEventListener("keydown", (event) => {
     if (event.key == "ArrowUp") {
