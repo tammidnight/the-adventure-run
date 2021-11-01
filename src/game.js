@@ -132,12 +132,17 @@ class Game {
     canvas.style.display = "none";
     restartBtn.style.display = "block";
     yourScore.style.display = "block";
+    level.style.display = "block";
 
     if (this.score < 10) {
       weakScore.style.display = "block";
     } else {
       goodScore.style.display = "block";
     }
+
+    let gameScore = document.createElement("h4");
+    gameScore.innerText = this.score;
+    yourScore.appendChild(gameScore);
   }
 
   draw() {

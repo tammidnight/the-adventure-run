@@ -11,6 +11,7 @@ window.addEventListener("load", () => {
   startBtn.addEventListener("click", () => {
     startBtn.style.display = "none";
     startPage.style.display = "none";
+    level.style.display = "none";
     canvas.style.display = "block";
     game.draw();
   });
