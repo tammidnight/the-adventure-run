@@ -5,6 +5,7 @@ window.addEventListener("load", () => {
   restartBtn.style.display = "none";
   weakScore.style.display = "none";
   goodScore.style.display = "none";
+  perfectScore.style.display = "none";
   yourScore.style.display = "none";
 
   // start button click
