@@ -26,10 +26,9 @@ let firstScore = new Image();
 firstScore.src = "./images/raspberry.png";
 let secondScore = new Image();
 secondScore.src = "./images/bamboo.png";
-let dec = 1;
 
 // items Array
-const items = [
+let items = [
   {
     img: secondObstacle,
     x: 750,
@@ -44,9 +43,11 @@ class Game {
     this.intervalId = 0;
     this.gameOver = false;
     this.score = 0;
+    this.dec = 2;
     this.jumping = false;
     this.ducking = false;
     this.count = 0;
+    this.time = 200;
     this.audio = new Audio();
     this.audioPlaying = false;
     this.audioChanging = false;
@@ -59,12 +60,14 @@ class Game {
     this.audio.src = "./sounds/POL-follow-me-short.wav";
     this.audio.volume = 0.05;
     this.audio.play();
+    this.audio.loop = true;
   }
 
   audioChange() {
     this.audio.src = "./sounds/POL-magical-sun-short.wav";
     this.audio.volume = 0.05;
     this.audio.play();
+    this.audio.loop = true;
   }
 
   audioOff() {
@@ -80,8 +83,8 @@ class Game {
   }
 
   playerMove() {
-    if (this.jumping && playerY >= 100) {
-      playerY -= 10;
+    if (this.jumping && playerY >= 80) {
+      playerY -= 15;
     } else {
       playerY += 2;
       if (playerY > 215) {
@@ -97,7 +100,18 @@ class Game {
     }
   }
 
-  increaseSpeed() {}
+  increaseSpeed() {
+    if (this.score >= 10 && this.score < 25) {
+      this.dec = 5;
+      this.time = 120;
+    } else if (this.score >= 25 && this.score < 50) {
+      this.dec = 8;
+      this.time = 90;
+    } else if (this.score >= 50) {
+      this.dec = 12;
+      this.time = 60;
+    }
+  }
 
   showGameOver() {
     canvas.style.display = "none";
@@ -117,24 +131,24 @@ class Game {
       this.ctx.drawImage(bg, 0, 0, 750, 425);
       this.ctx.drawImage(fg, 0, 305, 750, 95);
       this.ctx.drawImage(player, playerX, playerY, playerW, playerH);
-      this.ctx.font = "20px Verdana";
-      this.ctx.fillText(`Score: ${this.score}`, 20, 380);
+      this.ctx.font = "bold 20px Verdana";
+      this.ctx.fillText(`Score: ${this.score}`, 35, 360);
 
       this.count++;
 
-      if (this.count > 300) {
-        let random = Math.floor(Math.random() * 8);
+      if (this.count > this.time) {
+        let random = Math.floor(Math.random() * 7);
 
-        if (random == 0 || random == 4 || random == 6) {
+        if (random == 0 || random == 4) {
           let firstObstacleObj = {
             img: firstObstacle,
             x: 750,
-            y: 150,
+            y: 160,
             scoring: false,
           };
           items.push(firstObstacleObj);
         }
-        if (random == 1 || random == 5 || random == 7) {
+        if (random == 1 || random == 5) {
           let secondObstacleObj = {
             img: secondObstacle,
             x: 750,
@@ -144,7 +158,7 @@ class Game {
           items.push(secondObstacleObj);
         }
 
-        if (random == 2) {
+        if (random == 2 || random == 6) {
           let firstScoreObj = {
             img: firstScore,
             x: 750,
@@ -158,7 +172,7 @@ class Game {
           let secondScoreObj = {
             img: secondScore,
             x: 750,
-            y: 90,
+            y: 100,
             scoring: true,
             points: 5,
           };
@@ -170,60 +184,41 @@ class Game {
 
       for (let i = 0; i < items.length; i++) {
         this.ctx.drawImage(items[i].img, items[i].x, items[i].y);
-        items[i].x -= dec;
+        items[i].x -= this.dec;
 
-        if (items[i].x + items[i].img.width < 0) {
+        if ((items[i].x + items[i].img.width) / 2 < 25) {
           items.splice(i, 1);
         }
 
-        if (items[i].y <= 90) {
-          if (
-            playerX + player.width >= items[i].x &&
-            playerX <= items[i].x + items[i].img.width &&
-            playerY >= items[i].y + items[i].img.height &&
-            playerY + player.height <= items[i].y
-          ) {
-            if (items[i].scoring) {
-              if (
-                (playerX + player.width) / 2 ==
-                items[i].x + items[i].img.width
-              ) {
-                this.score += items[i].points;
-              }
-            } else {
-              this.gameOver = true;
-              console.log(this.gameOver);
-              this.gameOverAudioOn();
+        if (
+          playerX + player.width >= items[i].x &&
+          playerX <= items[i].x + items[i].img.width &&
+          playerY <= items[i].y + items[i].img.height &&
+          playerY + player.height >= items[i].y
+        ) {
+          if (items[i].scoring) {
+            if (
+              playerX + player.width - 2 == items[i].x ||
+              playerX + player.width - 2 == items[i].x - 1 ||
+              playerX + player.width - 2 == items[i].x - 5
+            ) {
+              this.score += items[i].points;
             }
-          }
-        } else {
-          if (
-            playerX + player.width >= items[i].x &&
-            playerX <= items[i].x + items[i].img.width &&
-            playerY <= items[i].y + items[i].img.height &&
-            playerY + player.height >= items[i].y
-          ) {
-            if (items[i].scoring) {
-              if (
-                (playerX + player.width) / 2 ==
-                items[i].x + items[i].img.width
-              ) {
-                this.score += items[i].points;
-              }
-            } else {
-              this.gameOver = true;
-              console.log(this.gameOver);
-              this.gameOverAudioOn();
-            }
+          } else {
+            this.gameOver = true;
+            console.log(this.gameOver);
+            this.gameOverAudioOn();
           }
         }
       }
 
       this.playerMove();
+      this.increaseSpeed();
 
       // Game Ends
       if (this.gameOver) {
         cancelAnimationFrame(this.intervalId);
+        this.ctx.clearRect(0, 0, canvas.width, canvas.height);
         this.showGameOver();
       } else {
         this.intervalId = requestAnimationFrame(() => {

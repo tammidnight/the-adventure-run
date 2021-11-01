@@ -18,11 +18,27 @@ window.addEventListener("load", () => {
   // restart button click
   restartBtn.addEventListener("click", () => {
     restartBtn.style.display = "none";
+    weakScore.style.display = "none";
+    goodScore.style.display = "none";
+    yourScore.style.display = "none";
     canvas.style.display = "block";
     game.score = 0;
     game.intervalId = 0;
     game.gameOver = false;
     game.count = 0;
+    game.time = 200;
+    game.dec = 2;
+    playerX = 25;
+    playerY = 215;
+    items = [
+      {
+        img: secondObstacle,
+        x: 750,
+        y: 265,
+        scoring: false,
+      },
+    ];
+    game.draw();
   });
 
   document.addEventListener("keydown", (event) => {
