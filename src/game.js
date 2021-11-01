@@ -131,7 +131,7 @@ class Game {
       this.ctx.drawImage(bg, 0, 0, 750, 425);
       this.ctx.drawImage(fg, 0, 305, 750, 95);
       this.ctx.drawImage(player, playerX, playerY, playerW, playerH);
-      this.ctx.font = "bold 20px Verdana";
+      this.ctx.font = "30px Zen Kurenaido";
       this.ctx.fillText(`Score: ${this.score}`, 35, 360);
 
       this.count++;
