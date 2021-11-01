@@ -26,6 +26,10 @@ let firstScore = new Image();
 firstScore.src = "./images/raspberry.png";
 let secondScore = new Image();
 secondScore.src = "./images/bamboo.png";
+let dec = 1;
+
+// items Array
+const items = [];
 
 class Game {
   constructor() {
@@ -35,6 +39,7 @@ class Game {
     this.score = 0;
     this.jumping = false;
     this.ducking = false;
+    this.count = 0;
   }
 
   audioOn() {}
@@ -56,36 +61,6 @@ class Game {
       playerY += playerH;
     } else {
       playerH = 92;
-    }
-  }
-
-  rockMove() {}
-
-  meteorMove() {}
-
-  raspberryMove() {}
-
-  bambooMove() {}
-
-  gameLoop() {
-    const items = [
-      this.rockMove,
-      this.meteorMove,
-      this.raspberryMove,
-      this.bambooMove,
-    ];
-
-    for (let i = 0; i < items.length; i++) {
-      let random = Math.floor(Math.random() * items.length);
-      if (random == 1) {
-        this.rockMove();
-      } else if (random == 2) {
-        this.meteorMove();
-      } else if (random == 3) {
-        this.raspberryMove();
-      } else if (random == 4) {
-        this.bambooMove;
-      }
     }
   }
 
@@ -111,6 +86,41 @@ class Game {
       this.ctx.drawImage(player, playerX, playerY, playerW, playerH);
       this.ctx.font = "20px Verdana";
       this.ctx.fillText(`Score: ${this.score}`, 20, 380);
+
+      this.count++;
+
+      if (this.count > 300) {
+        let random = Math.floor(Math.random() * 5);
+
+        if (random == 0) {
+          let firstObstacleObj = { img: firstObstacle, x: 750, y: 150 };
+          items.push(firstObstacleObj);
+        }
+        if (random == 1) {
+          let secondObstacleObj = { img: secondObstacle, x: 750, y: 265 };
+          items.push(secondObstacleObj);
+        }
+
+        if (random == 2) {
+          let firstScoreObj = { img: firstScore, x: 750, y: 245 };
+          items.push(firstScoreObj);
+        }
+        if (random == 3) {
+          let secondScoreObj = { img: secondScore, x: 750, y: 150 };
+          items.push(secondScoreObj);
+        }
+
+        this.count = 0;
+      }
+
+      for (let i = 0; i < items.length; i++) {
+        this.ctx.drawImage(items[i].img, items[i].x, items[i].y);
+        items[i].x -= dec;
+
+        if (items[i].x + items[i].img.width < 0) {
+          items.splice(i, 1);
+        }
+      }
 
       this.playerMove();
 
