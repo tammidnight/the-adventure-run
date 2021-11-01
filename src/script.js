@@ -15,9 +15,11 @@ window.addEventListener("load", () => {
   document.addEventListener("keydown", (event) => {
     if (event.key == "ArrowUp") {
       game.jumping = true;
+      game.ducking = false;
     }
     if (event.key == "ArrowDown") {
       game.ducking = true;
+      game.jumping = false;
     }
     if (event.key == "m") {
       if (game.audioPlaying == false && game.audioChanging == false) {

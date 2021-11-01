@@ -62,7 +62,10 @@ class Game {
   }
 
   playerMove() {
-    if (this.jumping && playerY > 100) {
+    /* if (playerY <= 214) {
+      this.jumping = false;
+    } */
+    if (this.jumping && playerY >= 100) {
       playerY -= 10;
     } else {
       playerY += 2;
@@ -121,7 +124,7 @@ class Game {
           items.push(firstScoreObj);
         }
         if (random == 3) {
-          let secondScoreObj = { img: secondScore, x: 750, y: 150 };
+          let secondScoreObj = { img: secondScore, x: 750, y: 100 };
           items.push(secondScoreObj);
         }
 
