@@ -2,7 +2,7 @@
 let canvas = document.querySelector("canvas");
 let startBtn = document.querySelector("#start");
 let restartBtn = document.querySelector("#restart");
-let startPage = document.querySelectorAll(".start");
+let startPage = document.querySelector(".start");
 let weakScore = document.querySelector("#weakScore");
 let goodScore = document.querySelector("#goodScore");
 let yourScore = document.querySelector("#yourScore");
@@ -29,7 +29,14 @@ secondScore.src = "./images/bamboo.png";
 let dec = 1;
 
 // items Array
-const items = [];
+const items = [
+  {
+    img: secondObstacle,
+    x: 750,
+    y: 265,
+    scoring: false,
+  },
+];
 
 class Game {
   constructor() {
@@ -151,7 +158,7 @@ class Game {
           let secondScoreObj = {
             img: secondScore,
             x: 750,
-            y: 100,
+            y: 90,
             scoring: true,
             points: 5,
           };
@@ -169,24 +176,45 @@ class Game {
           items.splice(i, 1);
         }
 
-        if (
-          playerX + player.width >= items[i].x &&
-          playerX <= items[i].x + items[i].img.width &&
-          playerY <= items[i].y + items[i].img.height &&
-          (playerY + player.height >= items[i].y + items[i].img.height ||
-            playerY + player.height <= items[i].y + items[i].img.height)
-        ) {
-          if (items[i].scoring) {
-            if (
-              (playerX + player.width) / 2 ==
-              items[i].x + items[i].img.width
-            ) {
-              this.score += items[i].points;
+        if (items[i].y <= 90) {
+          if (
+            playerX + player.width >= items[i].x &&
+            playerX <= items[i].x + items[i].img.width &&
+            playerY >= items[i].y + items[i].img.height &&
+            playerY + player.height <= items[i].y
+          ) {
+            if (items[i].scoring) {
+              if (
+                (playerX + player.width) / 2 ==
+                items[i].x + items[i].img.width
+              ) {
+                this.score += items[i].points;
+              }
+            } else {
+              this.gameOver = true;
+              console.log(this.gameOver);
+              this.gameOverAudioOn();
             }
-          } else {
-            this.gameOver = true;
-            console.log(this.gameOver);
-            /* this.gameOverAudioOn(); */
+          }
+        } else {
+          if (
+            playerX + player.width >= items[i].x &&
+            playerX <= items[i].x + items[i].img.width &&
+            playerY <= items[i].y + items[i].img.height &&
+            playerY + player.height >= items[i].y
+          ) {
+            if (items[i].scoring) {
+              if (
+                (playerX + player.width) / 2 ==
+                items[i].x + items[i].img.width
+              ) {
+                this.score += items[i].points;
+              }
+            } else {
+              this.gameOver = true;
+              console.log(this.gameOver);
+              this.gameOverAudioOn();
+            }
           }
         }
       }
@@ -196,7 +224,7 @@ class Game {
       // Game Ends
       if (this.gameOver) {
         cancelAnimationFrame(this.intervalId);
-        //this.showGameOver();
+        this.showGameOver();
       } else {
         this.intervalId = requestAnimationFrame(() => {
           animation();
