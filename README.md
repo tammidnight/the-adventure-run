@@ -48,6 +48,8 @@ game.js
   - increaseSpeed()
   - drawItems()
   - showGameOver()
+  - start()
+  - restart()
   - gameLoop()
 
 States y States Transitions

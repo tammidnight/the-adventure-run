@@ -262,6 +262,39 @@ class Game {
     yourScore.appendChild(gameScore);
   }
 
+  start() {
+    startBtn.style.display = "none";
+    startPage.style.display = "none";
+    level.style.display = "none";
+    canvas.style.display = "block";
+  }
+
+  restart() {
+    restartBtn.style.display = "none";
+    weakScore.style.display = "none";
+    goodScore.style.display = "none";
+    yourScore.style.display = "none";
+    level.style.display = "none";
+    canvas.style.display = "block";
+    this.score = 0;
+    this.intervalId = 0;
+    this.gameOver = false;
+    this.count = 0;
+    this.time = 260;
+    this.dec = 2;
+    playerX = 25;
+    playerY = 215;
+    items = [
+      {
+        img: secondObstacle,
+        x: 750,
+        y: 265,
+        scoring: false,
+      },
+    ];
+    yourScore.innerHTML = "<h3>Your Score is</h3>";
+  }
+
   gameLoop() {
     const animation = () => {
       // Draw Background
