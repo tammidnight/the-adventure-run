@@ -70,15 +70,20 @@ window.addEventListener("load", () => {
       if (game.pause == false) {
         game.pause = true;
         cancelAnimationFrame(game.intervalId);
-        console.log(game.pause);
       } else {
         game.pause = false;
         game.gameLoop();
-        console.log(game.pause);
       }
     }
 
     if (event.key == "e") {
+      if (game.changing == false) {
+        game.changing = true;
+        game.playerChanging();
+      } else {
+        game.changing = false;
+        game.playerChanging();
+      }
     }
   });
 

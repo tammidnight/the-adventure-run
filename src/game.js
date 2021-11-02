@@ -51,6 +51,7 @@ class Game {
     this.count = 0;
     this.time = 260;
     this.pause = false;
+    this.changing = false;
     this.audio = new Audio();
     this.audioPlaying = false;
     this.audioChanging = false;
@@ -114,6 +115,14 @@ class Game {
       playerY += playerH;
     } else {
       playerH = 92;
+    }
+  }
+
+  playerChanging() {
+    if (this.changing) {
+      player.src = "./images/sunglasses.png";
+    } else {
+      player.src = "./images/player.png";
     }
   }
 
