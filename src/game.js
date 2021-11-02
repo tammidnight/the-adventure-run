@@ -50,6 +50,7 @@ class Game {
     this.ducking = false;
     this.count = 0;
     this.time = 260;
+    this.pause = false;
     this.audio = new Audio();
     this.audioPlaying = false;
     this.audioChanging = false;
@@ -142,7 +143,7 @@ class Game {
     }
   }
 
-  gameLoop() {
+  drawItems() {
     if (this.count > this.time) {
       let random = Math.floor(Math.random() * 7);
 
@@ -243,7 +244,7 @@ class Game {
     yourScore.appendChild(gameScore);
   }
 
-  draw() {
+  gameLoop() {
     const animation = () => {
       // Draw Background
       this.ctx.drawImage(bg, 0, 0, 750, 425);
@@ -254,7 +255,7 @@ class Game {
 
       this.count++;
 
-      this.gameLoop();
+      this.drawItems();
 
       this.playerMove();
       this.increaseSpeed();
