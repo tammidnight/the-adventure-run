@@ -14,7 +14,7 @@ window.addEventListener("load", () => {
     startPage.style.display = "none";
     level.style.display = "none";
     canvas.style.display = "block";
-    game.draw();
+    game.gameLoop();
   });
 
   // restart button click
@@ -40,7 +40,7 @@ window.addEventListener("load", () => {
         scoring: false,
       },
     ];
-    game.draw();
+    game.gameLoop();
   });
 
   document.addEventListener("keydown", (event) => {
@@ -63,6 +63,18 @@ window.addEventListener("load", () => {
         game.audioPlaying = false;
         game.audioChanging = false;
         game.audioOff();
+      }
+    }
+
+    if (event.key == "p") {
+      if (game.pause == false) {
+        game.pause = true;
+        cancelAnimationFrame(game.intervalId);
+        console.log(game.pause);
+      } else {
+        game.pause = false;
+        game.gameLoop();
+        console.log(game.pause);
       }
     }
 
