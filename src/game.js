@@ -28,6 +28,8 @@ let firstScore = new Image();
 firstScore.src = "./images/raspberry.png";
 let secondScore = new Image();
 secondScore.src = "./images/bamboo.png";
+let dreamworks = new Image();
+dreamworks.src = "./images/dreamworks.png";
 
 // items Array
 let items = [
@@ -52,6 +54,7 @@ class Game {
     this.time = 260;
     this.pause = false;
     this.changing = false;
+    this.clicked = false;
     this.audio = new Audio();
     this.audioPlaying = false;
     this.audioChanging = false;
@@ -123,6 +126,12 @@ class Game {
       player.src = "./images/sunglasses.png";
     } else {
       player.src = "./images/player.png";
+    }
+  }
+
+  playerClicking() {
+    if (this.clicked) {
+      this.ctx.drawImage(dreamworks, 600, 40);
     }
   }
 
@@ -268,6 +277,8 @@ class Game {
 
       this.playerMove();
       this.increaseSpeed();
+
+      this.playerClicking();
 
       // Game Ends
       if (this.gameOver) {

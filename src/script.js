@@ -91,4 +91,12 @@ window.addEventListener("load", () => {
     game.jumping = false;
     game.ducking = false;
   });
+
+  canvas.addEventListener("click", () => {
+    if (game.clicked == false) {
+      game.clicked = true;
+    } else {
+      game.clicked = false;
+    }
+  });
 });
