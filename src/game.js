@@ -8,6 +8,7 @@ let goodScore = document.querySelector("#goodScore");
 let perfectScore = document.querySelector("#perfectScore");
 let yourScore = document.querySelector("#yourScore");
 let level = document.querySelector("#level");
+let difficulty = document.querySelector(".difficulty");
 
 // load all Images
 let bg = new Image();
@@ -266,6 +267,7 @@ class Game {
     startBtn.style.display = "none";
     startPage.style.display = "none";
     level.style.display = "none";
+    difficulty.style.display = "none";
     canvas.style.display = "block";
   }
 
@@ -275,12 +277,14 @@ class Game {
     goodScore.style.display = "none";
     yourScore.style.display = "none";
     level.style.display = "none";
+    difficulty.style.display = "none";
     canvas.style.display = "block";
     this.score = 0;
     this.intervalId = 0;
     this.gameOver = false;
     this.count = 0;
     this.time = 260;
+    this.clicked = false;
     this.dec = 2;
     playerX = 25;
     playerY = 215;
