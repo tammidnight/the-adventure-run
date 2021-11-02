@@ -43,6 +43,8 @@ game.js
   - audioOff()
   - gameOverAudioOn()
   - playerMove()
+  - playerChanging()
+  - playerClicking()
   - increaseSpeed()
   - drawItems()
   - showGameOver()
