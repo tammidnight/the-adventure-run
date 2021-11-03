@@ -2,6 +2,7 @@
 let canvas = document.querySelector("canvas");
 let startBtn = document.querySelector("#start");
 let restartBtn = document.querySelector("#restart");
+let levelTwoBtn = document.querySelector("#startLevelTwo");
 let startPage = document.querySelector(".start");
 let weakScore = document.querySelector("#weakScore");
 let goodScore = document.querySelector("#goodScore");
@@ -9,6 +10,8 @@ let perfectScore = document.querySelector("#perfectScore");
 let yourScore = document.querySelector("#yourScore");
 let level = document.querySelector("#level");
 let difficulty = document.querySelector(".difficulty");
+let levelTwoGameOver = document.querySelector("#levelTwoGameOver");
+let levelTwoScreen = document.querySelector("#levelTwoScreen");
 
 // load all Images
 let bg = new Image();
@@ -17,10 +20,6 @@ let fg = new Image();
 fg.src = "./images/sand.png";
 let player = new Image();
 player.src = "./images/player.png";
-let playerX = 25,
-  playerY = 215,
-  playerW = 151,
-  playerH = 92;
 let firstObstacle = new Image();
 firstObstacle.src = "./images/meteor.png";
 let secondObstacle = new Image();
@@ -48,6 +47,10 @@ class Game {
     this.intervalId = 0;
     this.gameOver = false;
     this.score = 0;
+    this.playerX = 25;
+    this.playerY = 215;
+    this.playerW = 151;
+    this.playerH = 92;
     this.dec = 2;
     this.jumping = false;
     this.ducking = false;
@@ -83,42 +86,44 @@ class Game {
   }
 
   gameOverAudioOn() {
-    if (this.audioPlaying || this.audioChanging) {
-      this.audio.pause();
-      this.gameOverAudio.volume = 0.05;
-      this.gameOverAudio.play();
+    if (this.score < 100) {
+      if (this.audioPlaying || this.audioChanging) {
+        this.audio.pause();
+        this.gameOverAudio.volume = 0.05;
+        this.gameOverAudio.play();
+      }
     }
   }
 
   playerMove() {
     if (level.options[level.selectedIndex].text == "Hard") {
-      if (playerY <= 214) {
+      if (this.playerY <= 214) {
         this.jumping = false;
       }
-      if (this.jumping && playerY >= 80) {
-        playerY -= 220;
+      if (this.jumping && this.playerY >= 80) {
+        this.playerY -= 220;
       } else {
-        playerY += 1.5;
-        if (playerY > 215) {
-          playerY = 215;
+        this.playerY += 1.5;
+        if (this.playerY > 215) {
+          this.playerY = 215;
         }
       }
     } else {
-      if (this.jumping && playerY >= 80) {
-        playerY -= 15;
+      if (this.jumping && this.playerY >= 80) {
+        this.playerY -= 15;
       } else {
-        playerY += 2;
-        if (playerY > 215) {
-          playerY = 215;
+        this.playerY += 2;
+        if (this.playerY > 215) {
+          this.playerY = 215;
         }
       }
     }
 
     if (this.ducking) {
-      playerH = 50;
-      playerY += playerH;
+      this.playerH = 50;
+      this.playerY += this.playerH;
     } else {
-      playerH = 92;
+      this.playerH = 92;
     }
   }
 
@@ -218,16 +223,16 @@ class Game {
       }
 
       if (
-        playerX + player.width >= items[i].x &&
-        playerX <= items[i].x + items[i].img.width &&
-        playerY <= items[i].y + items[i].img.height &&
-        playerY + player.height >= items[i].y
+        this.playerX + player.width >= items[i].x &&
+        this.playerX <= items[i].x + items[i].img.width &&
+        this.playerY <= items[i].y + items[i].img.height &&
+        this.playerY + player.height >= items[i].y
       ) {
         if (items[i].scoring) {
           if (
-            playerX + player.width - 2 == items[i].x ||
-            playerX + player.width - 2 == items[i].x - 1 ||
-            playerX + player.width - 2 == items[i].x - 5
+            this.playerX + player.width - 2 == items[i].x ||
+            this.playerX + player.width - 2 == items[i].x - 1 ||
+            this.playerX + player.width - 2 == items[i].x - 5
           ) {
             if (this.score <= 100) {
               this.score += items[i].points;
@@ -246,16 +251,18 @@ class Game {
 
   showGameOver() {
     canvas.style.display = "none";
-    restartBtn.style.display = "block";
     yourScore.style.display = "block";
     level.style.display = "block";
 
     if (this.score < 10) {
       weakScore.style.display = "block";
+      restartBtn.style.display = "block";
     } else if (this.score < 100) {
       goodScore.style.display = "block";
+      restartBtn.style.display = "block";
     } else {
-      perfectScore.style.display = "block";
+      levelTwoScreen.style.display = "block";
+      levelTwoBtn.style.display = "block";
     }
 
     let gameScore = document.createElement("h4");
@@ -286,8 +293,10 @@ class Game {
     this.time = 260;
     this.clicked = false;
     this.dec = 2;
-    playerX = 25;
-    playerY = 215;
+    this.playerX = 25;
+    this.playerY = 215;
+    this.audioPlaying = false;
+    this.audioChanging = false;
     items = [
       {
         img: secondObstacle,
@@ -304,7 +313,13 @@ class Game {
       // Draw Background
       this.ctx.drawImage(bg, 0, 0, 750, 425);
       this.ctx.drawImage(fg, 0, 305, 750, 95);
-      this.ctx.drawImage(player, playerX, playerY, playerW, playerH);
+      this.ctx.drawImage(
+        player,
+        this.playerX,
+        this.playerY,
+        this.playerW,
+        this.playerH
+      );
       this.ctx.font = "30px Zen Kurenaido";
       this.ctx.fillText(`Score: ${this.score}`, 35, 360);
 

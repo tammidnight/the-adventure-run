@@ -37,31 +37,49 @@
     </section>
 
     <canvas width="750" height="400"></canvas>
-    <div class="gameOver" id="weakScore">
+    <div id="weakScore">
       <h1>Game over</h1>
       <p>I think you might need some more practice ...</p>
     </div>
-    <div class="gameOver" id="goodScore">
+    <div id="goodScore">
       <h1>Game over</h1>
       <p>
         You did a great job! <br />You just need to go a bit further to reunite
         the little red panda with his friends!
       </p>
     </div>
-    <div class="gameOver" id="perfectScore">
+    <div id="levelTwoScreen">
+      <h1>Oh no it's getting dark!</h1>
+      <p>
+        In the darkness there comes a bad scorpion towards you.<br />It blocked
+        the road to the red pandas home.<br />Quick help him get through!
+      </p>
+      <p>
+        You have a certain amount of time to get through the blockade.<br />Move
+        with Arrow Left and Arrow Right, shoot with Space.<br />While in game
+        you can press 'm' to get some fancy music or mute it again.
+      </p>
+    </div>
+    <div id="levelTwoGameOver">
       <h1>Game over</h1>
+      <p>
+        Almost there! <br />You just need to get through the blockade to reunite
+        the little red panda with his friends!
+      </p>
+    </div>
+    <div id="perfectScore">
+      <h1>Wohoo!</h1>
       <h2>You did it!</h2>
       <p>
         You reunited the little red panda with all his friends. Thank you so
         much!
       </p>
       <img
-        src="./images/red-panda-and-friends.png"
-        alt="red-panda-and-friends"
-        width="600"
+        src="./images/red-panda-and-friends-at-home.png"
+        alt="red-panda-and-friends-at-home"
       />
     </div>
-    <div class="gameOver" id="yourScore">
+    <div id="yourScore">
       <h3>Your Score is</h3>
     </div>
     <p class="difficulty">Choose your difficulty level:</p>
@@ -72,8 +90,10 @@
       </select>
     </form>
     <button id="start">Start</button>
+    <button id="startLevelTwo">Start Level 2</button>
     <button id="restart">Run again</button>
     <script src="src/game.js"></script>
+    <script src="src/levelTwo.js"></script>
     <script src="src/script.js"></script>
   </body>
 </html>
