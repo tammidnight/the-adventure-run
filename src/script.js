@@ -27,7 +27,7 @@ window.addEventListener("load", () => {
   // level 2 button click
   levelTwoBtn.addEventListener("click", () => {
     levelTwo.start();
-    levelTwo.gameLoop();
+    levelTwo.enemyGameLoop();
   });
 
   document.addEventListener("keydown", (event) => {

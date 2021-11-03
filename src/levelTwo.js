@@ -194,6 +194,7 @@ class LevelTwo {
     level.style.display = "none";
     levelTwoGameOver.style.display = "none";
     levelTwoScreen.style.display = "none";
+    yourScore.style.display = "none";
 
     this.isLeft = false;
     this.isRight = false;
