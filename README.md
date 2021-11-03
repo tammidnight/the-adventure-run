@@ -52,7 +52,26 @@ game.js
   - restart()
   - gameLoop()
 
-States y States Transitions
+levelTwo.js
+
+- Class LevelTwo
+  - constructor()
+  - audioOn()
+  - audioOff()
+  - gameOverAudio()
+  - drawEnemyScreen()
+  - setCactiArray()
+  - drawCacti()
+  - playerMoveLR()
+  - playerAttack()
+  - collision()
+  - drawTimer()
+  - startTimer()
+  - showGameOver()
+  - start()
+  - enemyGameLoop()
+
+States and States Transitions
 Definition of the different states and their transition (transition functions)
 
 splashScreen
@@ -78,6 +97,9 @@ Javascript
   - draw foreground
   - draw Score
 - Class Game
+  - define properties
+  - define methods
+- Class LevelTwo
   - define properties
   - define methods
 
