@@ -10,6 +10,7 @@ cactus.src = "./images/cactus.png";
 class LevelTwo {
   constructor() {
     this.ctx = canvas.getContext("2d");
+    this.isLevelTwo = false;
     this.playerX = 300;
     this.playerY = 323;
     this.playerInc = 5;
@@ -134,6 +135,7 @@ class LevelTwo {
 
               if (this.cactusCount == 30) {
                 this.enemyGameOver = true;
+                this.isLevelTwo = false;
               }
             }
           }
@@ -196,6 +198,7 @@ class LevelTwo {
     levelTwoScreen.style.display = "none";
     yourScore.style.display = "none";
 
+    this.isLevelTwo = false;
     this.isLeft = false;
     this.isRight = false;
     this.enemyIntervalId = 0;
@@ -219,6 +222,7 @@ class LevelTwo {
 
   enemyGameLoop() {
     const animation = () => {
+      this.isLevelTwo = true;
       this.drawEnemyScreen();
       this.drawCacti();
       this.drawTimer();

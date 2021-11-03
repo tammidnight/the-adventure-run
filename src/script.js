@@ -31,7 +31,7 @@ window.addEventListener("load", () => {
   });
 
   document.addEventListener("keydown", (event) => {
-    if (!game.gameOver) {
+    if (game.isLevelOne) {
       if (event.key == "ArrowUp") {
         game.jumping = true;
         game.ducking = false;
@@ -63,7 +63,7 @@ window.addEventListener("load", () => {
       }
     }
 
-    if (!levelTwo.enemyGameOver) {
+    if (levelTwo.isLevelTwo) {
       if (event.key == "ArrowLeft") {
         levelTwo.isLeft = true;
         levelTwo.isRight = false;
@@ -84,7 +84,7 @@ window.addEventListener("load", () => {
     }
 
     if (event.key == "m") {
-      if (!game.gameOver) {
+      if (game.isLevelOne) {
         if (game.audioPlaying == false && game.audioChanging == false) {
           game.audioPlaying = true;
           game.audioOn();
@@ -97,7 +97,7 @@ window.addEventListener("load", () => {
           game.audioOff();
         }
 
-        if (!levelTwo.enemyGameOver) {
+        if (levelTwo.isLevelTwo) {
           if (levelTwo.audioPlaying == false) {
             levelTwo.audioPlaying = true;
             levelTwo.audioOn();
@@ -107,26 +107,23 @@ window.addEventListener("load", () => {
           }
         }
       }
-
-      if (!levelTwo.enemyGameOver) {
-      }
     }
   });
 
   document.addEventListener("keyup", () => {
-    if (!game.gameOver) {
+    if (game.isLevelOne) {
       game.jumping = false;
       game.ducking = false;
     }
 
-    if (!levelTwo.enemyGameOver) {
+    if (levelTwo.isLevelTwo) {
       levelTwo.isLeft = false;
       levelTwo.isRight = false;
     }
   });
 
   canvas.addEventListener("click", () => {
-    if (!game.gameOver) {
+    if (game.isLevelOne) {
       if (game.clicked == false) {
         game.clicked = true;
       } else {

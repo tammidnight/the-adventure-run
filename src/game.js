@@ -45,6 +45,7 @@ class Game {
   constructor() {
     this.ctx = canvas.getContext("2d");
     this.intervalId = 0;
+    this.isLevelOne = false;
     this.gameOver = false;
     this.score = 0;
     this.playerX = 25;
@@ -238,11 +239,13 @@ class Game {
               this.score += items[i].points;
             } else {
               this.gameOver = true;
+              this.isLevelOne = false;
               this.gameOverAudioOn();
             }
           }
         } else {
           this.gameOver = true;
+          this.isLevelOne = false;
           this.gameOverAudioOn();
         }
       }
@@ -286,6 +289,7 @@ class Game {
     level.style.display = "none";
     difficulty.style.display = "none";
     canvas.style.display = "block";
+    this.isLevelOne = false;
     this.score = 0;
     this.intervalId = 0;
     this.gameOver = false;
@@ -310,6 +314,7 @@ class Game {
 
   gameLoop() {
     const animation = () => {
+      this.isLevelOne = true;
       // Draw Background
       this.ctx.drawImage(bg, 0, 0, 750, 425);
       this.ctx.drawImage(fg, 0, 305, 750, 95);
