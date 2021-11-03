@@ -155,7 +155,7 @@ class Game {
         this.time = 60;
       }
     } else {
-      if (this.score >= 10 && this.score < 25) {
+      if (this.score >= 0 && this.score < 25) {
         this.dec = 5;
         this.time = 120;
       } else if (this.score >= 25 && this.score < 50) {

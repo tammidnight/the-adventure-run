@@ -217,7 +217,10 @@ class LevelTwo {
     this.timeLeft = 30;
     this.timer = null;
 
+    yourScore.innerHTML = "<h3>Your Score is</h3>";
+
     this.setCactiArray();
+    this.startTimer();
   }
 
   enemyGameLoop() {
