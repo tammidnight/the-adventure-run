@@ -32,12 +32,12 @@ window.addEventListener("load", () => {
 
   document.addEventListener("keydown", (event) => {
     if (game.isLevelOne) {
-      if (event.key == "ArrowUp") {
+      if (event.key == "ArrowUp" || event.key == "w") {
         game.jumping = true;
         game.ducking = false;
       }
 
-      if (event.key == "ArrowDown") {
+      if (event.key == "ArrowDown" || event.key == "s") {
         game.ducking = true;
         game.jumping = false;
       }
@@ -64,12 +64,12 @@ window.addEventListener("load", () => {
     }
 
     if (levelTwo.isLevelTwo) {
-      if (event.key == "ArrowLeft") {
+      if (event.key == "ArrowLeft" || event.key == "a") {
         levelTwo.isLeft = true;
         levelTwo.isRight = false;
       }
 
-      if (event.key == "ArrowRight") {
+      if (event.key == "ArrowRight" || event.key == "d") {
         levelTwo.isRight = true;
         levelTwo.isLeft = false;
       }
