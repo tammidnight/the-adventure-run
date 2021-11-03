@@ -8,6 +8,9 @@ window.addEventListener("load", () => {
   goodScore.style.display = "none";
   perfectScore.style.display = "none";
   yourScore.style.display = "none";
+  levelTwoBtn.style.display = "none";
+  levelTwoGameOver.style.display = "none";
+  levelTwoScreen.style.display = "none";
 
   // start button click
   startBtn.addEventListener("click", () => {
@@ -20,12 +23,12 @@ window.addEventListener("load", () => {
     game.restart();
     game.gameLoop();
   });
-    
-    // level 2 button click
-    levelTwoBtn.addEventListener('click', () => {
-        levelTwo.start()
-        levelTwo.gameLoop()
-    })
+
+  // level 2 button click
+  levelTwoBtn.addEventListener("click", () => {
+    levelTwo.start();
+    levelTwo.gameLoop();
+  });
 
   document.addEventListener("keydown", (event) => {
     if (!game.gameOver) {
