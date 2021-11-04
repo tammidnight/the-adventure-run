@@ -3,7 +3,7 @@ const numOfHighScores = 8;
 function checkHighScore(score) {
   const highScores = JSON.parse(localStorage.getItem(highScoreList)) ?? [];
   const lowestScore = highScores[numOfHighScores - 1]?.score ?? 0;
-  console.log(highScores);
+
   if (score > lowestScore) {
     saveHighScore(score, highScores);
     showHighScores();

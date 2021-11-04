@@ -129,7 +129,7 @@ class Game {
       }
     } else {
       if (this.score >= 0 && this.score < 10) {
-        this.dec = 5;
+        this.dec = 4;
         this.time = 110;
       } else if (this.score >= 10 && this.score < 25) {
         this.dec = 6;

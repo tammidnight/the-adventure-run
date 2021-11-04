@@ -168,7 +168,6 @@ class LevelTwo {
     this.timer = setInterval(() => {
       if (this.timeLeft > 0 && this.isLevelTwo) {
         this.timeLeft--;
-        console.log(this.timeLeft);
       } else {
         this.timeLeft = 30;
         clearInterval(this.timer);
