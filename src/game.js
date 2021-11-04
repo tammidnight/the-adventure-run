@@ -136,6 +136,14 @@ class Game {
     }
   }
 
+  playerHappy() {
+    if (this.changing) {
+      player.src = "./images/playerHeart.png";
+    } else {
+      player.src = "./images/player.png";
+    }
+  }
+
   playerClicking() {
     if (this.clicked) {
       this.ctx.drawImage(dreamworks, 600, 40);
@@ -155,12 +163,15 @@ class Game {
         this.time = 60;
       }
     } else {
-      if (this.score >= 0 && this.score < 25) {
+      if (this.score >= 0 && this.score < 10) {
         this.dec = 5;
-        this.time = 120;
+        this.time = 110;
+      } else if (this.score >= 10 && this.score < 25) {
+        this.dec = 6;
+        this.time = 90;
       } else if (this.score >= 25 && this.score < 50) {
         this.dec = 8;
-        this.time = 90;
+        this.time = 60;
       } else if (this.score >= 50) {
         this.dec = 12;
         this.time = 60;
@@ -233,10 +244,16 @@ class Game {
           if (
             this.playerX + player.width - 2 == items[i].x ||
             this.playerX + player.width - 2 == items[i].x - 1 ||
+            this.playerX + player.width - 2 == items[i].x - 2 ||
+            this.playerX + player.width - 2 == items[i].x - 2.5 ||
+            this.playerX + player.width - 2 == items[i].x - 3 ||
+            this.playerX + player.width - 2 == items[i].x - 4 ||
+            this.playerX + player.width - 2 == items[i].x - 4.5 ||
             this.playerX + player.width - 2 == items[i].x - 5
           ) {
-            if (this.score <= 100) {
+            if (this.score <= 99) {
               this.score += items[i].points;
+              items.splice(i, 1);
             } else {
               this.gameOver = true;
               this.isLevelOne = false;
@@ -299,6 +316,8 @@ class Game {
     this.dec = 2;
     this.playerX = 25;
     this.playerY = 215;
+    this.playerW = 151;
+    this.playerH = 92;
     this.audioPlaying = false;
     this.audioChanging = false;
     items = [

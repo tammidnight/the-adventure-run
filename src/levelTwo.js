@@ -20,6 +20,7 @@ class LevelTwo {
     this.enemyGameOver = false;
     this.weaponY = 280;
     this.attack = [];
+    this.changing = false;
     this.rowCount = 3;
     this.columnCount = 10;
     this.cactusWidth = 40;
@@ -48,7 +49,7 @@ class LevelTwo {
     this.audio.pause();
   }
 
-  gameOverAudio() {
+  gameOverAudioOn() {
     if (this.cactusCount < 30) {
       if (this.audioPlaying) {
         this.audio.pause();
@@ -117,6 +118,22 @@ class LevelTwo {
     }
   }
 
+  playerAttackBlue() {
+    if (this.changing) {
+      playerWeapon.src = "./images/good-blue-meteor.png";
+    } else {
+      playerWeapon.src = "./images/good-meteor.png";
+    }
+  }
+
+  playerAttackRed() {
+    if (this.changing) {
+      playerWeapon.src = "./images/good-red-meteor.png";
+    } else {
+      playerWeapon.src = "./images/good-meteor.png";
+    }
+  }
+
   collision() {
     for (let i = 0; i < this.columnCount; i++) {
       for (let j = 0; j < this.rowCount; j++) {
@@ -145,25 +162,26 @@ class LevelTwo {
   }
 
   drawTimer() {
-    if (level.options[level.selectedIndex].text == "Hard") {
-      this.timeLeft = 20;
-    } else {
-      this.timeLeft = 30;
-    }
     this.ctx.font = "bold 18px Zen Kurenaido";
     this.ctx.fillStyle = "lightgray";
     this.ctx.fillText(`Time remaining: ${this.timeLeft}`, 10, 375);
   }
 
   startTimer() {
+    if (level.options[level.selectedIndex].text == "Hard") {
+      this.timeLeft = 20;
+    } else {
+      this.timeLeft = 30;
+    }
     this.timer = setInterval(() => {
-      if (this.timeLeft > 0 && !this.enemyGameOver) {
+      if (this.timeLeft > 0 && this.isLevelTwo) {
         this.timeLeft--;
+        console.log(this.timeLeft);
       } else {
         this.timeLeft = 30;
         clearInterval(this.timer);
         this.enemyGameOver = true;
-        this.gameOverAudio();
+        this.gameOverAudioOn();
       }
     }, 1000);
   }
@@ -175,17 +193,18 @@ class LevelTwo {
 
     if (this.cactusCount == 30) {
       perfectScore.style.display = "block";
-      levelTwoBtn.style.display = "block";
+      restartBtn.style.display = "block";
 
       let gameScore = document.createElement("h4");
       gameScore.innerText = "150";
       yourScore.appendChild(gameScore);
     } else {
       levelTwoGameOver.style.display = "block";
-      restartBtn.style.display = "block";
+      levelTwoBtn.style.display = "block";
+      this.cactusCount += 100;
 
       let gameScore = document.createElement("h4");
-      gameScore.innerText = "100";
+      gameScore.innerText = this.cactusCount;
       yourScore.appendChild(gameScore);
     }
   }
@@ -198,7 +217,7 @@ class LevelTwo {
     levelTwoScreen.style.display = "none";
     yourScore.style.display = "none";
 
-    this.isLevelTwo = false;
+    this.isLevelTwo = true;
     this.isLeft = false;
     this.isRight = false;
     this.enemyIntervalId = 0;
@@ -225,7 +244,6 @@ class LevelTwo {
 
   enemyGameLoop() {
     const animation = () => {
-      this.isLevelTwo = true;
       this.drawEnemyScreen();
       this.drawCacti();
       this.drawTimer();

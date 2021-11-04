@@ -52,6 +52,16 @@ window.addEventListener("load", () => {
         }
       }
 
+      if (event.key == "h") {
+        if (game.changing == false) {
+          game.changing = true;
+          game.playerHappy();
+        } else {
+          game.changing = false;
+          game.playerHappy();
+        }
+      }
+
       if (event.key == "p") {
         if (game.pause == false) {
           game.pause = true;
@@ -75,11 +85,33 @@ window.addEventListener("load", () => {
       }
 
       if (event.code == "Space") {
-        levelTwo.attack.push({
-          img: playerWeapon,
-          x: levelTwo.playerX + player.width / 2,
-          y: levelTwo.weaponY,
-        });
+        if (levelTwo.attack.length < 2) {
+          levelTwo.attack.push({
+            img: playerWeapon,
+            x: levelTwo.playerX + player.width / 2,
+            y: levelTwo.weaponY,
+          });
+        }
+      }
+
+      if (event.key == "b") {
+        if (levelTwo.changing == false) {
+          levelTwo.changing = true;
+          levelTwo.playerAttackBlue();
+        } else {
+          levelTwo.changing = false;
+          levelTwo.playerAttackBlue();
+        }
+      }
+
+      if (event.key == "r") {
+        if (levelTwo.changing == false) {
+          levelTwo.changing = true;
+          levelTwo.playerAttackRed();
+        } else {
+          levelTwo.changing = false;
+          levelTwo.playerAttackRed();
+        }
       }
     }
 
