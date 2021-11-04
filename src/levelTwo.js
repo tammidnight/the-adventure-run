@@ -203,7 +203,7 @@ class LevelTwo {
       gameScore.innerText = endScore;
       yourScore.appendChild(gameScore);
 
-      checkHighScore(this.endScore);
+      checkHighScore(endScore);
     }
   }
 
