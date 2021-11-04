@@ -85,6 +85,7 @@ select,
 #start,
 #restart,
 #startLevelTwo,
+#restartLevelTwo,
 #highScoreBtn {
   text-align: center;
   font-family: "Zen Kurenaido", sans-serif;
@@ -102,12 +103,17 @@ select {
 #start,
 #restart,
 #startLevelTwo,
+#restartLevelTwo,
 #highScoreBtn {
   padding: 0;
   height: 50px;
   width: 115px;
   font-size: 20px;
   box-shadow: 3px 3px lightgray;
+}
+
+#restartLevelTwo {
+  font-size: 16px;
 }
 
 #highScoreBtn {
@@ -149,6 +155,6 @@ td {
   position: absolute;
   border-radius: 15%;
   border: 1px solid rgba(169, 169, 169, 0.1);
-  padding: 100px 50px;
+  padding: 25px 50px;
   background: rgba(248, 248, 255, 0.9);
 }

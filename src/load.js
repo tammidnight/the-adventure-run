@@ -3,6 +3,7 @@ let canvas = document.querySelector("canvas");
 let startBtn = document.querySelector("#start");
 let restartBtn = document.querySelector("#restart");
 let levelTwoBtn = document.querySelector("#startLevelTwo");
+let restartLevelTwoBtn = document.querySelector("#restartLevelTwo");
 let startPage = document.querySelector(".start");
 let weakScore = document.querySelector("#weakScore");
 let goodScore = document.querySelector("#goodScore");

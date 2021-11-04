@@ -196,7 +196,7 @@ class LevelTwo {
       checkHighScore(150);
     } else {
       levelTwoGameOver.style.display = "block";
-      levelTwoBtn.style.display = "block";
+      restartLevelTwoBtn.style.display = "block";
 
       let endScore = this.cactusCount + game.score;
       let gameScore = document.createElement("h4");
@@ -213,6 +213,7 @@ class LevelTwo {
     level.style.display = "none";
     levelTwoGameOver.style.display = "none";
     levelTwoScreen.style.display = "none";
+    restartLevelTwoBtn.style.display = "none";
     yourScore.style.display = "none";
     highScore.style.display = "none";
     highScoreList.style.display = "none";

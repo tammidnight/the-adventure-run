@@ -11,6 +11,7 @@ window.addEventListener("load", () => {
   levelTwoBtn.style.display = "none";
   levelTwoGameOver.style.display = "none";
   levelTwoScreen.style.display = "none";
+  restartLevelTwoBtn.style.display = "none";
   highScore.style.display = "none";
   highScoreList.style.display = "none";
   highScoreBtn.style.display = "none";
@@ -33,6 +34,12 @@ window.addEventListener("load", () => {
 
   // level 2 button click
   levelTwoBtn.addEventListener("click", () => {
+    levelTwo.start();
+    levelTwo.enemyGameLoop();
+  });
+
+  // restart level 2 button click
+  restartLevelTwoBtn.addEventListener("click", () => {
     levelTwo.start();
     levelTwo.enemyGameLoop();
   });
