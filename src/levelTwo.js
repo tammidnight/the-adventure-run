@@ -182,6 +182,8 @@ class LevelTwo {
     canvas.style.display = "none";
     yourScore.style.display = "block";
     level.style.display = "block";
+    highScoreList.style.display = "block";
+    highScoreBtn.style.display = "block";
 
     if (this.cactusCount == 30) {
       perfectScore.style.display = "block";
@@ -190,6 +192,8 @@ class LevelTwo {
       let gameScore = document.createElement("h4");
       gameScore.innerText = "150";
       yourScore.appendChild(gameScore);
+
+      checkHighScore(150);
     } else {
       levelTwoGameOver.style.display = "block";
       levelTwoBtn.style.display = "block";
@@ -198,6 +202,8 @@ class LevelTwo {
       let gameScore = document.createElement("h4");
       gameScore.innerText = endScore;
       yourScore.appendChild(gameScore);
+
+      checkHighScore(this.endScore);
     }
   }
 
@@ -208,6 +214,9 @@ class LevelTwo {
     levelTwoGameOver.style.display = "none";
     levelTwoScreen.style.display = "none";
     yourScore.style.display = "none";
+    highScore.style.display = "none";
+    highScoreList.style.display = "none";
+    highScoreBtn.style.display = "none";
 
     this.isLevelTwo = true;
     this.isLeft = false;

@@ -35,18 +35,57 @@ p {
   margin-bottom: 10px;
 }
 
+#goal,
+#instructions {
+  border: 1px solid darkgray;
+  border-radius: 25px;
+  padding: 0 15px 15px 15px;
+}
+
+#weakScore p,
+#goodScore p,
+#levelTwoScreen p,
+#levelTwoGameOver p {
+  border: 1px solid darkgray;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+#goal,
+#weakScore,
+#goodScore,
+#levelTwoScreen,
+#levelTwoGameOver {
+  margin-bottom: 15px;
+}
+
+#btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 250px;
+}
+
+form,
 button {
   margin: 10px 0;
 }
 
-form {
+#user {
   margin: 10px 0;
+  text-align: center;
+  font-family: "Zen Kurenaido", sans-serif;
+  border-radius: 10px;
+  border: 1px solid darkgray;
+  font-size: 16px;
+  width: 160px;
 }
 
 select,
 #start,
 #restart,
-#startLevelTwo {
+#startLevelTwo,
+#highScoreBtn {
   text-align: center;
   font-family: "Zen Kurenaido", sans-serif;
   background-image: url(./images/sand.png);
@@ -62,10 +101,54 @@ select {
 
 #start,
 #restart,
-#startLevelTwo {
+#startLevelTwo,
+#highScoreBtn {
   padding: 0;
   height: 50px;
   width: 115px;
   font-size: 20px;
   box-shadow: 3px 3px lightgray;
+}
+
+#highScoreBtn {
+  background-image: url(./images/enemybg.png);
+  color: lightgray;
+}
+
+#highScoreList {
+  background-image: url(./images/enemybg.png);
+  text-align: center;
+  border-radius: 5%;
+  box-shadow: 3px 3px lightgray;
+  color: lightgray;
+  margin-bottom: 20px;
+  font-family: "Zen Kurenaido", sans-serif;
+}
+
+table {
+  font-size: 22px;
+  width: 200px;
+  border-collapse: collapse;
+}
+
+#highScoreList tr {
+  border-bottom: 1px solid darkgray;
+}
+
+#highScoreList tr:last-child {
+  border-bottom: none;
+}
+
+th,
+td {
+  width: 100px;
+  height: 40px;
+}
+
+#highScore {
+  position: absolute;
+  border-radius: 15%;
+  border: 1px solid rgba(169, 169, 169, 0.1);
+  padding: 100px 50px;
+  background: rgba(248, 248, 255, 0.9);
 }

@@ -12,6 +12,10 @@ let level = document.querySelector("#level");
 let difficulty = document.querySelector(".difficulty");
 let levelTwoGameOver = document.querySelector("#levelTwoGameOver");
 let levelTwoScreen = document.querySelector("#levelTwoScreen");
+let highScore = document.querySelector("#highScore");
+let highScoreBtn = document.querySelector("#highScoreBtn");
+let highScoreList = document.querySelector("#highScoreList");
+let user = document.querySelector("#user");
 
 // load all Images
 let bg = new Image();

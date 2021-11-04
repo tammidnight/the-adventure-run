@@ -78,7 +78,7 @@ class Game {
       if (this.jumping && this.playerY >= 80) {
         this.playerY -= 15;
       } else {
-        this.playerY += 2;
+        this.playerY += 3;
         if (this.playerY > 215) {
           this.playerY = 215;
         }
@@ -244,9 +244,17 @@ class Game {
     if (this.score < 10) {
       weakScore.style.display = "block";
       restartBtn.style.display = "block";
+      highScoreList.style.display = "block";
+      highScoreBtn.style.display = "block";
+
+      checkHighScore(this.score);
     } else if (this.score < 100) {
       goodScore.style.display = "block";
       restartBtn.style.display = "block";
+      highScoreList.style.display = "block";
+      highScoreBtn.style.display = "block";
+
+      checkHighScore(this.score);
     } else {
       levelTwoScreen.style.display = "block";
       levelTwoBtn.style.display = "block";
@@ -262,6 +270,7 @@ class Game {
     startPage.style.display = "none";
     level.style.display = "none";
     difficulty.style.display = "none";
+    user.style.display = "none";
     canvas.style.display = "block";
   }
 
@@ -272,6 +281,9 @@ class Game {
     yourScore.style.display = "none";
     level.style.display = "none";
     difficulty.style.display = "none";
+    highScore.style.display = "none";
+    highScoreList.style.display = "none";
+    highScoreBtn.style.display = "none";
     canvas.style.display = "block";
     this.isLevelOne = false;
     this.score = 0;

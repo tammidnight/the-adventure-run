@@ -11,11 +11,18 @@ window.addEventListener("load", () => {
   levelTwoBtn.style.display = "none";
   levelTwoGameOver.style.display = "none";
   levelTwoScreen.style.display = "none";
+  highScore.style.display = "none";
+  highScoreList.style.display = "none";
+  highScoreBtn.style.display = "none";
 
   // start button click
   startBtn.addEventListener("click", () => {
-    game.start();
-    game.gameLoop();
+    if (user.value) {
+      game.start();
+      game.gameLoop();
+    } else {
+      alert("Please enter your name");
+    }
   });
 
   // restart button click
@@ -28,6 +35,15 @@ window.addEventListener("load", () => {
   levelTwoBtn.addEventListener("click", () => {
     levelTwo.start();
     levelTwo.enemyGameLoop();
+  });
+
+  // high score button click
+  highScoreBtn.addEventListener("click", () => {
+    highScore.style.display = "block";
+  });
+
+  highScore.addEventListener("click", () => {
+    highScore.style.display = "none";
   });
 
   document.addEventListener("keydown", (event) => {

@@ -30,6 +30,12 @@ load.js
 - get all needed DOM Elements
 - load all images
 
+highScore.js
+
+- checkHighScore(score)
+- saveHighScore(score, highscore)
+- showHighScore()
+
 game.js
 
 - Class Game
@@ -72,12 +78,14 @@ levelTwo.js
 
 script.js
 
-- window.addEventListener('load', => {})
-- startBtn.addEventListener('click', => {})
-- restartBtn.addEventListener('click', => {})
-- document.addEventListener('keydown', => {})
-- document.addEventListener('keyup', => {})
-- startGame()
+- window.addEventListener('load', () => {})
+- startBtn.addEventListener('click', () => {})
+- restartBtn.addEventListener('click', () => {})
+- levelTwoBtn.addEventListener('click', () => {})
+- highScoreBtn.addEventListener('click', () => {})
+- document.addEventListener('keydown', (event) => {})
+- document.addEventListener('keyup', () => {})
+- canvas.addEventListener('click', () => {})
 
 States and States Transitions
 Definition of the different states and their transition (transition functions)
@@ -113,7 +121,7 @@ Javascript
 
 CSS
 
-- basic styles for buttons
+- basic styles
 
 Additional Links
 Trello

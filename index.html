@@ -19,20 +19,20 @@
       <div class="start" id="goal">
         <h2>Goal of the Game</h2>
         <p>
-          You are a little red panda, which is stranded in the desert. Luckily
+          You are a little red panda, which is stranded in the desert.<br />Luckily
           you have your skateboard with you.<br />The goal is to bring the
           little red panda back to all his friends.
         </p>
-        <div class="start" id="instructions">
-          <h2>Instructions</h2>
-          <p>
-            Avoid the rocks and meteors with jumping and ducking.<br />To get
-            healthy back to your friends the raspberry and bamboo might help
-            you.<br />Move with Arrow Up and Arrow Down.<br />While in game you
-            can press 'm' to get some fancy music or mute it again.<br />With
-            'p' you can pause and resume the game.
-          </p>
-        </div>
+      </div>
+      <div class="start" id="instructions">
+        <h2>Instructions</h2>
+        <p>
+          Avoid the rocks and meteors with jumping and ducking.<br />To get
+          healthy back to your friends the raspberry and bamboo might help
+          you.<br />Move with Arrow Up and Arrow Down.<br />While in game you
+          can press 'm' to get some fancy music or mute it again.<br />With 'p'
+          you can pause and resume the game.
+        </p>
       </div>
     </section>
 
@@ -82,6 +82,9 @@
     <div id="yourScore">
       <h3>Your Score is</h3>
     </div>
+
+    <input type="text" id="user" placeholder="Please enter your name">
+
     <p class="difficulty">Choose your difficulty level:</p>
     <form>
       <select id="level" name="level">
@@ -90,9 +93,25 @@
       </select>
     </form>
     <button id="start">Start</button>
-    <button id="startLevelTwo">Start Level 2</button>
-    <button id="restart">Run again</button>
+
+    <div id="btn">
+      <button id="startLevelTwo">Start Level 2</button>
+      <button id="restart">Run again</button>
+      <button id="highScoreBtn"">High Scores</button>
+    </div>
+
+    <div id="highScore">
+      <table>
+        <tr>
+          <th>Points</th>
+          <th>Name</th>
+        </tr>
+      </table>
+      <table id="highScoreList"></table>
+    </div>
+
     <script src="src/load.js"></script>
+    <script src="src/highScore.js"></script>
     <script src="src/game.js"></script>
     <script src="src/levelTwo.js"></script>
     <script src="src/script.js"></script>
