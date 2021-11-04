@@ -25,14 +25,10 @@ Backlog
 
 Data structure
 
-script.js
+load.js
 
-- window.addEventListener('load', => {})
-- startBtn.addEventListener('click', => {})
-- restartBtn.addEventListener('click', => {})
-- document.addEventListener('keydown', => {})
-- document.addEventListener('keyup', => {})
-- startGame()
+- get all needed DOM Elements
+- load all images
 
 game.js
 
@@ -73,6 +69,15 @@ levelTwo.js
   - showGameOver()
   - start()
   - enemyGameLoop()
+
+script.js
+
+- window.addEventListener('load', => {})
+- startBtn.addEventListener('click', => {})
+- restartBtn.addEventListener('click', => {})
+- document.addEventListener('keydown', => {})
+- document.addEventListener('keyup', => {})
+- startGame()
 
 States and States Transitions
 Definition of the different states and their transition (transition functions)

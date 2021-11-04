@@ -1,12 +1,3 @@
-let enemybg = new Image();
-enemybg.src = "./images/enemybg.png";
-let enemy = new Image();
-enemy.src = "./images/enemy.png";
-let playerWeapon = new Image();
-playerWeapon.src = "./images/good-meteor.png";
-let cactus = new Image();
-cactus.src = "./images/cactus.png";
-
 class LevelTwo {
   constructor() {
     this.ctx = canvas.getContext("2d");
@@ -37,6 +28,7 @@ class LevelTwo {
     this.gameOverAudio = new Audio(
       "./sounds/mixkit-game-over-dark-orchestra-633.wav"
     );
+    this.game = new Game();
   }
 
   audioOn() {
@@ -201,10 +193,10 @@ class LevelTwo {
     } else {
       levelTwoGameOver.style.display = "block";
       levelTwoBtn.style.display = "block";
-      this.cactusCount += 100;
 
+      let endScore = this.cactusCount + game.score;
       let gameScore = document.createElement("h4");
-      gameScore.innerText = this.cactusCount;
+      gameScore.innerText = endScore;
       yourScore.appendChild(gameScore);
     }
   }
