@@ -8,7 +8,10 @@ The Adventure Run
 
 Description
 
-A simple junmp'n'run game where the goal is to avoid obstacles and get the score items.
+A single player game with two levels with each two difficulty levels.
+First level is a jump'n'run where you need to avoid obstacles and collect score items. With higher score it's getting faster.
+In the second level you need to shoot through a blockade in a certain amount of time.
+It has a high score with local storage.
 
 MVP
 
@@ -82,18 +85,11 @@ script.js
 - startBtn.addEventListener('click', () => {})
 - restartBtn.addEventListener('click', () => {})
 - levelTwoBtn.addEventListener('click', () => {})
+- restartlevelTwoBtn.addEventListener('click', () => {})
 - highScoreBtn.addEventListener('click', () => {})
 - document.addEventListener('keydown', (event) => {})
 - document.addEventListener('keyup', () => {})
 - canvas.addEventListener('click', () => {})
-
-States and States Transitions
-Definition of the different states and their transition (transition functions)
-
-splashScreen
-gameScreen
-gameoverScreen
-winScreen
 
 Task
 
@@ -124,8 +120,6 @@ CSS
 - basic styles
 
 Additional Links
-Trello
-Link url
 
 Slides
 Link Slides
