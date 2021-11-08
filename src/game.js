@@ -308,6 +308,7 @@ class Game {
       },
     ];
     yourScore.innerHTML = "<h3>Your Score is</h3>";
+    player.src = "./images/player.png";
   }
 
   gameLoop() {
